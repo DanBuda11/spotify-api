@@ -1,19 +1,24 @@
-# Basic Webpack Boilerplate
+# Spotify Votes Project
 
-With the following features:
+Files Needed:
 
-* Sass compiled to css in an external stylesheet
-* ES2015
-* An app directory for development and a dist folder for builds
-* Static compilation of jpg and png images
-* Nothing else
+* entry.js to run the complete code
+* VotesPage file and SearchPage file
+* NavBar component to switch between VotesPage and SearchPage
+* Footer for both pages
+* file for search button & search field (combined)
+* SearchResultsArea to hold all the bands returned from the search
+* SearchResultsBand to make a container for each band returned by the search
+* VotesResults Band to make a container for each band returned that has votes
+* Band component for each band (this will go into both SearchResultsBand and VotesResultsBand)
+* Model and Collection files to work with the server storing bands that have votes
 
-### To use this on a new project
-* Clone the repo!
-* Change the remote!
-* Install the packages with `npm install`!
-* To start the dev server run `webpack-dev-server --progress --colors`
-  * Your project is now live at 'localhost:8080' and livereloaded on change at 'localhost:8080/webpack-dev-server'
-* To build your assets into the `dist` directory run `webpack`
-* **NEVER TOUCH THE CONTENTS OF THE DIST FOLDER**
-* Build whatever you like in the app folder
+Folders Needed:
+
+* collections folder for collection file
+* models folder for model file
+* images folder for any images used in NavBar or Footer
+
+Other:
+
+* make it responsive: mobile has bands stacked up vertically, tablet has 2 bands per row, desktop has 3 bands per row; make icons/images for switching between pages and for login stuff so it doesn't take up much room horizontally and doesn't need to be re-styled based on which @media

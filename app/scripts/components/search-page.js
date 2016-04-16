@@ -3,9 +3,17 @@ import React from 'react';
 import NavBar from './navbar.js';
 import SearchComponent from './search-form.js';
 import SearchResults from './search-results.js';
+import Footer from './footer.js';
 
-const NavBar = React.createClass({
+const SearchPage = React.createClass({
 	render: function() {
-		return <h1>This is the NavBar</h1>;
+		return <div>
+		<NavBar/>
+				<SearchComponent/>
+				<SearchResults/>
+				<Footer/>
+				</div>
 	}
 });
+
+export default SearchPage;

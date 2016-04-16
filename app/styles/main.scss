@@ -1,6 +1,54 @@
 @import 'variables';
 
 body {
-  background: $light-grey;
-  background-image: url(../assets/orangecat.jpg);
+  background: $body-bg;
 }
+
+nav {
+	overflow: hidden;
+	padding: 0.5em;
+	background-color: $steel;
+	border-bottom: 2px solid #000;
+
+	img {
+			float: left;
+			vertical-align: middle;
+			height: 3rem;
+	}
+
+	h2 {
+		float: left;
+		margin: 0 0 0 0.5em;
+		line-height: 3rem;
+		color: #fff;
+		font-size: 2rem;
+		text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	}
+	
+	.navRight {
+		float: right;
+
+		.navLink {
+			margin-right: 1em;
+
+			i {
+				font-size: 2rem;
+				line-height: 3rem;
+				color: #fff;
+				text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+			}
+
+			i:hover {
+				color: $cornflower;
+			}
+		}
+	}
+}
+
+.footer {
+	background-color: $steel;
+	border-top: 2px solid #000;
+	padding: 1em;
+	text-align: center;
+	color: #fff;
+}	

@@ -18,10 +18,13 @@ const SearchPage = React.createClass({
 	}.bind(this));
 	},
 	newVote: function(e) {
-		let bandVote = {
+			let bandVote = {
 			name: this.refs.name.innerHTML,
 			pic: this.refs.pic.src
 		};
+		console.log(this);
+		console.log(bandVote);
+		console.log(this.refs.name.innerHTML);
 		bands.create(bandVote);
 		// console.log(this.refs.name.innerHTML);
 		// console.log(this.refs.pic.src);
@@ -38,8 +41,9 @@ const SearchPage = React.createClass({
 					key={index}>
 					<img ref="pic" src={val.images[0].url}/>
 					<div ref="name">{val.name}</div>
-					<div className="voteBox">
-						<button onClick={this.newVote}>Cast Your Vote!</button>
+					<div className="voteBox"
+						ref={index}>
+						<button key={index} onClick={this.newVote}>Cast Your Vote!</button>
 					</div>
 				</div>
 				);

@@ -1,65 +1,63 @@
 import React from 'react';
+import $ from 'jquery';
 import NavBar from './navbar.js';
-import VotesArea from './votes-area.js';
+import bands from './../collections/band-collection.js';
+// import VotesArea from './votes-area.js';
 import Footer from './footer.js';
 
 const VotesPage = React.createClass({
 	getInitialState: function() {
-		return {bands: []}
+		return {bands: []};
 	},
 	componentDidMount: function() {
-		bands.fetch();
-		bands.on('add', () => {
-			this.setState({bands: bands});
-		});
-	}
+    	this.serverRequest = $.get('http://tiny-za-server.herokuapp.com/collections/buda-bands-collection', function(bands) {
+      		var bandsVotes = bands;
+      		this.setState({bands: bandsVotes});
+      		// console.log(bandsVotes);
+  //     		this.setState({
+  //      			username: lastGist.owner.login,
+  //   			lastGistUrl: lastGist.html_url
+  //    		});
+  //   }.bind(this));
+  }.bind(this));
+	
+// handleSubmit: function(e) {
+// 		e.preventDefault();
+// 		let searchInput = this.refs.searchInput.value;
+// 		this.request = $.get('https://api.spotify.com/v1/search?q='+searchInput+'&type=artist', function(bands) {
+// 		var bandsReturn = bands.artists.items;
+// 		this.setState({bands: bandsReturn});
+// 	}.bind(this));
+	},
+	// componentDidMount: function() {
+	// 	bands.fetch();
+	// 	console.log(bands);
+	// 	this.setState({bands: bands});
+	// 	console.log(bands);
+	// },
+
+
+	
 	render: function() {
-	const bandBoxes = this.state.bands.map((val, index, array) => {
-			if (!val.images[0]) {
-				val.images.push({url: 'http://www.emgreenfield.com/UploadedFiles/Product/no_image.png'});
-			};
+	const bandVoteBoxes = this.state.bands.map((val, index, array) => {
 			return (
-				<div className="bandSearchBox"
+				<div className="bandVoteBox"
 					key={index}>
-					<img ref="pic" src={val.images[0].url}/>
+					<img ref="pic" src={val.pic}/>
 					<div ref="name">{val.name}</div>
-					<div className="voteBox">
-						<button onClick={this.newVote}>Cast Your Vote!</button>
-					</div>
 				</div>
 				);
 		});
-
-
-
-		return <div>
-				<NavBar/>
-				<VotesArea/>
-				<Footer/>
+		return (
+				<div>
+					<NavBar/>
+					<div className="votesArea">
+						{bandVoteBoxes}
+					</div>
+					<Footer/>
 				</div>
+				)
 	}
 });
 
 export default VotesPage;
-
-
-
-	render: function() {
-		const unicornRows = this.state.unicorns.map((val, index, array) => {
-			return (
-				<UnicornRow 
-					name={val.get('name')}
-					color={val.get('color')}
-					power={val.get('power')} />
-			)
-		});
-		return (
-			<div>
-				<UniForm/>
-				{unicornRows}
-			</div>
-		)
-	}
-});
-
-export default App;

@@ -1,11 +1,21 @@
-// This is the component that holds the search field and button
 import React from 'react';
+import $ from 'jquery';
 
 const SearchComponent = React.createClass({
+
 	render: function() {
-		return <div>
-		<h1>This will be the search area</h1>
-		</div>;
+		return <form onSubmit={this.handleSubmit}>
+					<div className="submitArea">
+						<input
+							className="searchBox"
+							type="text"
+							placeholder="Band search..."
+							ref="searchInput" />
+						<input
+							className="searchButton"
+							type="submit"/>
+					</div>
+				</form>;
 	}
 });
 

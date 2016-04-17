@@ -7,8 +7,9 @@ import React from 'react';
 
 const BandComponent = React.createClass({
 	render: function() {
-		return <div>
-		<h6>Band image & name will go here</h6>
+		return <div className="bandComponent">
+			<img src={this.props.image} className="bandImage"/>
+			<h6 className="bandName">{this.props.name}</h6>
 		</div>
 	}
 });

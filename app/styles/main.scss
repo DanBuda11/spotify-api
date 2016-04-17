@@ -20,7 +20,7 @@ nav {
 		float: left;
 		margin: 0 0 0 0.5em;
 		line-height: 3rem;
-		color: #fff;
+		color: $cornflower;
 		font-size: 2rem;
 		text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
 	}
@@ -42,6 +42,43 @@ nav {
 				color: $cornflower;
 			}
 		}
+	}
+}
+
+.submitArea {
+	margin: 0 auto;
+	padding: 1em;
+	width: 70%;
+
+	.searchBox {
+		width: 75%;
+		border: 1 px solid #000;
+		padding: 0.7em;
+		border-radius: 1em;
+	}
+
+	.searchButton {
+		float: right;
+		padding: 0.7em;
+		background-color: $cornflower;
+		border: 2px solid $steel;
+		font-weight: bold;
+		border-radius: 1em;
+		color: #fff;
+	}
+}
+
+.bandSearchArea {
+	padding: 2em;
+}
+
+.bandSearchBox  {
+	width: 25%;
+	margin: 1em;
+	float: left;
+
+	img {
+		width: 100%;
 	}
 }
 

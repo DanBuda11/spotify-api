@@ -39,12 +39,12 @@ const VotesPage = React.createClass({
 
 	
 	render: function() {
-	const bandVoteBoxes = this.state.bands.map((val, index, array) => {
+	const bandVoteBoxes = this.state.bands.map((band, index, array) => {
 			return (
 				<div className="bandVoteBox"
 					key={index}>
-					<img ref="pic" src={val.pic}/>
-					<div ref="name">{val.name}</div>
+					<img ref="pic" src={band.image}/>
+					<div ref="name">{band.name}</div>
 				</div>
 				);
 		});

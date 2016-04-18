@@ -5,12 +5,26 @@ import NavBar from './navbar.js';
 import Footer from './footer.js';
 
 const BandBox = React.createClass({
+	newVote: function(e) {
+		// console.log(e.target);
+		// console.log(e.target.name);
+		// console.log(e.target.image);
+		// console.log(this.props.name);
+		// console.log(this.props);
+			let bandVote = {
+			name: this.props.name,
+			image: this.props.image
+		};
+		// console.log(bandVote);
+		bands.create(bandVote);
+	},
 	render: function() {
 		return (
 			<div className="bandSearchBox">
-				<img src={this.props.image}/>
-				<div>{this.props.name}</div>
-				<button name={this.props.name} image={this.props.image} onClick={this.props.newVote}>Cast Your Vote!</button>
+				<img className="bandImg" src={this.props.image}
+					ref="image"/>
+				<div className="bandName" ref="name">{this.props.name}</div>
+				<button className="voteButton" name={this.props.name} image={this.props.image} onClick={this.newVote}>VOTE</button>
 			</div>
 			)
 	}
@@ -28,26 +42,13 @@ const SearchPage = React.createClass({
 		this.setState({bands: bandsReturn});
 	}.bind(this));
 	},
-	handleClick: function(e) {
-		console.log(e.target);
-		console.log(e.target.name);
-		console.log(e.target.image);
-		// console.log(this.props.name);
-		// console.log(this.props);
-			let bandVote = {
-			name: e.target.name
-			// image: e.target.image
-		};
-		console.log(bandVote);
-		bands.create(bandVote);
-	},
 	render: function() {
 		const bandBoxes = this.state.bands.map((band, index, array) => {
 			if (!band.images[0]) {
 				band.images.push({url: 'http://www.emgreenfield.com/UploadedFiles/Product/no_image.png'});
 			};
 			return (
-				<BandBox newVote={this.handleClick} key={index} name={band.name} image={band.images[0].url}/>
+				<BandBox key={index} name={band.name} image={band.images[0].url}/>
 				);
 		});
 		return (

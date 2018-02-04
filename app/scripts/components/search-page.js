@@ -45,7 +45,6 @@ const SearchPage = React.createClass({
 	}.bind(this));
 	},
 	render: function() {
-		console.log('ID: ', CLIENT_ID);
 		const bandBoxes = this.state.bands.map((band, index, array) => {
 			if (!band.images[0]) {
 				band.images.push({url: 'http://www.emgreenfield.com/UploadedFiles/Product/no_image.png'});

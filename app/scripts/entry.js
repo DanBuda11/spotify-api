@@ -1,13 +1,13 @@
 import './../styles/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory, Link} from 'react-router';
+import {Router, Route, browserHistory, Link} from 'react-router';
 import VotesPage from './components/votes-page.js';
 import SearchPage from './components/search-page.js';
 import LoginPage from './components/login-page.js';
 
 const router = (
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path="/" component={SearchPage}/>
 		<Route path="/votes" component={VotesPage}/>
 		<Route path="/login" component={LoginPage}/>

@@ -39,10 +39,43 @@ const SearchPage = React.createClass({
 	handleSubmit: function(e) {
 		e.preventDefault();
 		let searchInput = this.refs.searchInput.value;
-		this.request = $.get('https://api.spotify.com/v1/search?q='+searchInput+'&type=artist', function(bands) {
-		var bandsReturn = bands.artists.items;
-		this.setState({bands: bandsReturn});
-	}.bind(this));
+		
+		window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
+		// nothing below this is running
+		console.log('yay -1');
+		const hash = window.location.hash
+			.substring(1)
+			.split('&')
+			.reduce(function (initial, item) {
+				if (item) {
+					var parts = item.split('=');
+					initial[parts[0]] = decodeURIComponent(parts[1]);
+				}
+				return initial;
+			}, {});
+		window.location.hash = '';
+		let token = hash.access_token;
+		console.log('yay');
+		$.ajax({
+			url: 'https://api.spotify.com/v1/me',
+			headers: {
+				'Authorization': 'Bearer' + token
+			},
+			success: function(response) {
+				console.log(response);
+			}
+		});
+		console.log('yay 2');
+
+		
+		// this.request = $.get(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=http:%2F%2Flocalhost:8080%2F`, function() {
+		// 	console.log('something happened');
+		// });
+		
+		// this.request = $.get('https://api.spotify.com/v1/search?q='+searchInput+'&type=artist', function(bands) {
+		// 	var bandsReturn = bands.artists.items;
+		// 	this.setState({bands: bandsReturn});
+		// }.bind(this));
 	},
 	render: function() {
 		const bandBoxes = this.state.bands.map((band, index, array) => {

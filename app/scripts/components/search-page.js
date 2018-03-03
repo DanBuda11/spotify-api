@@ -38,14 +38,17 @@ const SearchPage = React.createClass({
 	},
 	handleSubmit: function(e) {
 		e.preventDefault();
+		// Save search term in a variable
 		let searchInput = this.refs.searchInput.value;
+		// Save the search term in sessionStorage so it can be used after Spotify auth
 		sessionStorage.setItem('searchTerm', searchInput);
-		console.log(sessionStorage.searchTerm);
+		// console.log(sessionStorage.searchTerm);
+		// Need to be able to go to Spotify to get auth token
+		// Do I need to use async/await or promise here?
+		window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
 
-
-		// window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
-		// nothing below this is running
-		console.log('yay -1');
+		// console.log('yay -1');
+		// Need to pull token out of post-auth url
 		const hash = window.location.hash
 			.substring(1)
 			.split('&')
@@ -54,22 +57,23 @@ const SearchPage = React.createClass({
 					var parts = item.split('=');
 					initial[parts[0]] = decodeURIComponent(parts[1]);
 				}
+				console.log('initial: ', initial);
 				return initial;
 			}, {});
 		window.location.hash = '';
 		let token = hash.access_token;
-		console.log('yay');
+		// console.log('yay');
 		$.ajax({
 			url: `https://api.spotify.com/v1/search?q=${sessionStorage.searchTerm}`,
 			headers: {
 				'Authorization': 'Bearer' + token
 			},
 			success: function(response) {
-				console.log(response);
+				console.log('response: ', response);
 				sessionStorage.clear();
 			}
 		});
-		console.log('yay 2');
+		// console.log('yay 2');
 
 		
 		// this.request = $.get(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=http:%2F%2Flocalhost:8080%2F`, function() {

@@ -39,8 +39,11 @@ const SearchPage = React.createClass({
 	handleSubmit: function(e) {
 		e.preventDefault();
 		let searchInput = this.refs.searchInput.value;
-		
-		window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
+		sessionStorage.setItem('searchTerm', searchInput);
+		console.log(sessionStorage.searchTerm);
+
+
+		// window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
 		// nothing below this is running
 		console.log('yay -1');
 		const hash = window.location.hash
@@ -57,12 +60,13 @@ const SearchPage = React.createClass({
 		let token = hash.access_token;
 		console.log('yay');
 		$.ajax({
-			url: 'https://api.spotify.com/v1/me',
+			url: `https://api.spotify.com/v1/search?q=${sessionStorage.searchTerm}`,
 			headers: {
 				'Authorization': 'Bearer' + token
 			},
 			success: function(response) {
 				console.log(response);
+				sessionStorage.clear();
 			}
 		});
 		console.log('yay 2');

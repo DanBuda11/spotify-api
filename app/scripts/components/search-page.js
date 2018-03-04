@@ -45,8 +45,15 @@ const SearchPage = React.createClass({
 		// console.log(sessionStorage.searchTerm);
 		// Need to be able to go to Spotify to get auth token
 		// Do I need to use async/await or promise here?
-		window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
-
+		const getAuth = (id) => {
+			// Set function here solely to grab authentication and return the token value?
+		}
+		
+		const getBands = async (id) => {
+			window.location = `https://accounts.spotify.com/authorize?client_id=${id}&redirect_uri=http:%2F%2Flocalhost:8080%2F&response_type=token`;
+		}
+		
+		getBands(CLIENT_ID);
 		// console.log('yay -1');
 		// Need to pull token out of post-auth url
 		const hash = window.location.hash
